@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+mkdir -p data
+podman run \
+  --cidfile cidfile \
+  --detach \
+  --name factorio-server \
+  --publish 34197:34197/udp \
+  --publish 27015:27015/tcp \
+  --volume data:/factorio \
+  --restart=unless-stopped \
+  docker.io/factoriotools/factorio:2.0.69-rootless
